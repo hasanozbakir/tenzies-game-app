@@ -16,7 +16,7 @@ export default function Record(props) {
         }
     },[props.isRecordOpen])
 
-    const recordElements =  props.recordArray.length > 0 ? 
+    const recordElements =  props.recordArray.length > 0 && 
                             props.recordArray.map((recItem, index) => {
                                 return (
                                     <li key={index}>
@@ -28,17 +28,18 @@ export default function Record(props) {
                                         </p>
                                     </li>
                                 )
-                            }):
-                            () => {
-                                return (
-                                    <li>There are no records to show, yet</li>
-                                )
-                            }
+                            })
     
     return (
         props.isRecordOpen && 
         <div className="record--container">
-            <h3>Best scores of all</h3>
+            <h3>
+                {
+                    props.recordArray.length > 0 ? 
+                    "Best scores of all":
+                    "No records yet"
+                }
+            </h3>
             <ul 
                 ref={ref} 
                 className="record" 
